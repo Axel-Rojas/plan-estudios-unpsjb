@@ -13,10 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "https://plan-estudios-unpsjb.vercel.app"
+  ),
   title: "Plan de Estudios - UNPSJB",
   description:
     "Visualizá y seguí tu progreso en el plan de estudios.",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/logo512.webp",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "/ogimg.webp",
+        alt: "Plan de Estudios - UNPSJB",
+      },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
