@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useEffect, useRef, useState } from "react";
-import type { Materia, EstadoMateria } from "../types";
+import type { Materia, EstadoMateria, RequisitoComplementario } from "../types";
 
 export interface WidgetProgresoProps {
     materias: Materia[];
+    requisitos?: RequisitoComplementario[];
     getEstado: (codigo: string) => EstadoMateria;
 }
 
@@ -42,7 +43,7 @@ function useNumeroAnimado(objetivo: number, duracion = 800) {
     return mostrado;
 }
 
-export default function WidgetProgreso({ materias, getEstado }: WidgetProgresoProps) {
+export default function WidgetProgreso({ materias, requisitos = [], getEstado }: WidgetProgresoProps) {
     const { aprobadas, total, pct } = useMemo(() => {
         const regulares = materias.filter((m) => !m.esOptativa);
 
@@ -55,7 +56,7 @@ export default function WidgetProgreso({ materias, getEstado }: WidgetProgresoPr
             ),
         ];
 
-        const totalItems = regulares.length + grupos.length;
+        const totalItems = regulares.length + grupos.length + requisitos.length;
 
         const aprobRegulares = regulares.filter(
             (m) => getEstado(m.codigo) === "aprobada"
@@ -73,10 +74,14 @@ export default function WidgetProgreso({ materias, getEstado }: WidgetProgresoPr
                 .some((m) => getEstado(m.codigo) === "aprobada")
         ).length;
 
-        const cursadasAprobadas = aprobRegulares + aprobOptativas;
+        const aprobRequisitos = requisitos.filter(
+            (r) => getEstado(r.codigo) === "aprobada"
+        ).length;
+
+        const cursadasAprobadas = aprobRegulares + aprobOptativas + aprobRequisitos;
         const porcentaje = totalItems === 0 ? 0 : Math.round((cursadasAprobadas / totalItems) * 100);
         return { aprobadas: cursadasAprobadas, total: totalItems, pct: porcentaje };
-    }, [materias, getEstado]);
+    }, [materias, requisitos, getEstado]);
 
     const pctAnimado = useNumeroAnimado(pct);
 

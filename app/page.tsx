@@ -78,6 +78,7 @@ export default function Home() {
           )}
           <WidgetProgreso
             materias={carreraSeleccionada.materias}
+            requisitos={carreraSeleccionada.requisitos}
             getEstado={getEstado}
           />
         </>
