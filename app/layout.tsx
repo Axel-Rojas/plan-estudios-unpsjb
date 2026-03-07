@@ -19,9 +19,9 @@ export const metadata: Metadata = {
   title: "Plan de Estudios - UNPSJB",
   description:
     "Visualizá y seguí tu progreso en el plan de estudios.",
-  manifest: "/manifest.json",
   icons: {
-    icon: "/logo512.webp",
+    icon: "/logo512.png",
+    apple: "/logo192.png",
   },
   openGraph: {
     images: [
