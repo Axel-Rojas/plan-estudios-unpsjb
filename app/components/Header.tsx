@@ -18,14 +18,16 @@ export default function Header({
 }: HeaderProps) {
     const facultades = [...new Set(carreras.map((c) => c.facultad))].sort((a, b) => a.localeCompare(b, "es"));
     const [facultadSeleccionada, setFacultadSeleccionada] = useState<string>(
-        carreraSeleccionada?.facultad || facultades[0] || ""
+        carreraSeleccionada?.facultad || facultades.includes("Facultad de Ciencias Naturales y Ciencias de la Salud") ? "Facultad de Ciencias Naturales y Ciencias de la Salud" : facultades[0] || ""
     );
 
     useEffect(() => {
         if (carreraSeleccionada) {
             setFacultadSeleccionada(carreraSeleccionada.facultad);
+        } else if (!facultadSeleccionada) {
+            setFacultadSeleccionada(facultades[0] || "");
         }
-    }, [carreraSeleccionada]);
+    }, [carreraSeleccionada, facultadSeleccionada, facultades]);
 
     const carrerasPorFacultad = carreras
         .filter((c) => c.facultad === facultadSeleccionada)

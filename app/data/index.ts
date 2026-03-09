@@ -13,4 +13,5 @@ const carreras: Record<string, Carrera[]> = {
     naturales: carrerasNaturales,
 };
 
+// Forcing reload check
 export default carreras;

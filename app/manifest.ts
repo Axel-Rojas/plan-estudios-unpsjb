@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
         description: 'Visualizá y seguí tu progreso en el plan de estudios de la Universidad Nacional de la Patagonia San Juan Bosco.',
         start_url: '/',
         display: 'standalone',
-        background_color: '#ffffff',
+        background_color: '#000000',
         theme_color: '#000000',
         icons: [
             {

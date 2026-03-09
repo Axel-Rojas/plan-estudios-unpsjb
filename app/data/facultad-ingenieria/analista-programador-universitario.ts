@@ -4,7 +4,7 @@ const analistaProgramadorUniversitario: Carrera = {
     nombre: "Analista Programador Universitario",
     facultad: "Facultad de Ingeniería",
     sede: "Sede Comodoro Rivadavia",
-    plan: "Plan 2019",
+    plan: "Plan 2010",
     materias: [
         { codigo: "IF001", nombre: "Elementos de Informática", año: 1, cuatrimestre: 1, correlativas: [], cargaHoraria: 105 },
         { codigo: "MA045", nombre: "Álgebra", año: 1, cuatrimestre: 1, correlativas: [], cargaHoraria: 135 },
