@@ -105,9 +105,6 @@ export default function Header({
                         <div className="h-3.5 w-3.5 rounded border-2 border-emerald-500 bg-[#0a1a14] md:h-4 md:w-4" />
                         <span className="text-slate-400">Aprobada</span>
                     </div>
-                    <div className="text-slate-500">
-                        Click = correlativas · ⟳ = estado
-                    </div>
                 </div>
             </div>
         </header>
