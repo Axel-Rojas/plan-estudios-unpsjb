@@ -110,7 +110,7 @@ export default function Header({
                     </button>
                     <button
                         onClick={() => setShowContact(true)}
-                        className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-slate-400 transition-colors hover:bg-slate-800 hover:text-cyan-400 focus:bg-slate-800 focus:text-cyan-400"
+                        className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-slate-400 transition-colors hover:bg-slate-800 hover:text-white focus:bg-slate-800 focus:text-white"
                         title="Informar problema o sugerencia"
                     >
                         <svg className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
