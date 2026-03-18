@@ -19,7 +19,7 @@ export default function Header({
     onSeleccionarCarrera,
     onLimpiarCarrera,
 }: HeaderProps) {
-    const facultades = [...new Set(carreras.map((c) => c.facultad))].sort((a, b) => 
+    const facultades = [...new Set(carreras.map((c) => c.facultad))].sort((a, b) =>
         (FACULTAD_NOMBRES[a] || a).localeCompare(FACULTAD_NOMBRES[b] || b, "es")
     );
     const [facultadSeleccionada, setFacultadSeleccionada] = useState<string>(

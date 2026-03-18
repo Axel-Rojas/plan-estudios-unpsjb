@@ -13,7 +13,7 @@ export default function ModalBienvenida({
     carreras,
     onSeleccionar,
 }: ModalBienvenidaProps) {
-    const facultades = [...new Set(carreras.map((c) => c.facultad))].sort((a, b) => 
+    const facultades = [...new Set(carreras.map((c) => c.facultad))].sort((a, b) =>
         (FACULTAD_NOMBRES[a] || a).localeCompare(FACULTAD_NOMBRES[b] || b)
     );
     const [facultadSeleccionada, setFacultadSeleccionada] = useState("");
@@ -81,7 +81,7 @@ export default function ModalBienvenida({
                         <option value="" disabled>Seleccionar carrera...</option>
                         {carrerasPorFacultad.map((c) => (
                             <option key={c.nombre} value={c.nombre}>
-                                {c.nombre} - {c.plan}
+                                {c.nombre}
                             </option>
                         ))}
                     </select>
