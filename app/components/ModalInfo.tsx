@@ -41,44 +41,38 @@ export function ContactModal({ isOpen, onClose }: ModalInfoProps) {
             ref={dialogRef}
             onCancel={handleClose}
             onClick={handleBackdropClick}
-            className="backdrop:bg-black/60 backdrop:backdrop-blur-sm m-auto max-w-[90vw] w-full md:max-w-md rounded-xl md:rounded-2xl border border-slate-200 bg-white shadow-2xl open:animate-in open:zoom-in-95 open:fade-in-0 dark:border-slate-700/50 dark:bg-slate-900"
+            className="backdrop:bg-black/60 backdrop:backdrop-blur-sm m-auto max-w-[90vw] w-full md:max-w-md rounded-xl md:rounded-2xl border border-slate-200 bg-white shadow-2xl open:animate-in open:zoom-in-95 open:fade-in-0 dark:border-slate-800 dark:bg-slate-900"
         >
             <div className="flex flex-col gap-6 p-6 text-slate-700 dark:text-slate-200">
-                <div className="flex items-center justify-between border-b border-slate-200 pb-4 dark:border-slate-700/50">
-                    <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2 dark:text-slate-100">
-                        <svg className="h-5 w-5 text-cyan-600 dark:text-cyan-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="20" height="16" x="2" y="4" rx="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                <div className="flex flex-col items-center border-b border-slate-200 pb-4 dark:border-slate-700/50">
+                    <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
                         Contacto
                     </h2>
                 </div>
 
-                <div className="flex flex-col gap-5 text-sm">
-                    <div className="flex flex-col items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 p-4 text-center dark:border-slate-800 dark:bg-slate-950/50">
-                        <h3 className="font-semibold text-slate-800 dark:text-slate-200">¿Encontraste un error o tenés sugerencias?</h3>
-                        <p className="text-slate-600 dark:text-slate-400">Podés reportar problemas o sugerir mejoras enviando un mail.</p>
-                        <button
-                            onClick={() => {
-                                navigator.clipboard.writeText("axelkevinagustinrojas@gmail.com");
-                                setCopied(true);
-                                setTimeout(() => setCopied(false), 2000);
-                            }}
-                            className="mt-2 flex w-fit items-center gap-2 rounded-md bg-cyan-100 px-4 py-2 font-medium text-cyan-700 transition-colors hover:bg-cyan-200 dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20"
-                        >
-                            {copied ? (
-                                <>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    ¡Copiado al portapapeles!
-                                </>
-                            ) : (
-                                <>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" /><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /></svg>
-                                    axelkevinagustinrojas@gmail.com
-                                </>
-                            )}
-                        </button>
-                    </div>
+                <div className="flex flex-col items-center gap-5 text-sm text-center">
+                    <h3 className="font-semibold text-slate-800 dark:text-slate-200">¿Encontraste un error o tenés sugerencias?</h3>
+                    <p className="text-slate-600 dark:text-slate-400">Podés reportar problemas o sugerir mejoras enviando un mail.</p>
+                    <button
+                        onClick={() => {
+                            navigator.clipboard.writeText("axelkevinagustinrojas@gmail.com");
+                            setCopied(true);
+                            setTimeout(() => setCopied(false), 2000);
+                        }}
+                        className="mt-2 flex w-fit cursor-pointer items-center gap-2 rounded-md bg-cyan-100 px-4 py-2 font-medium text-cyan-700 transition-colors hover:bg-cyan-200 dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20"
+                    >
+                        {copied ? (
+                            <>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                ¡Copiado al portapapeles!
+                            </>
+                        ) : (
+                            <>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" /><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /></svg>
+                                axelkevinagustinrojas@gmail.com
+                            </>
+                        )}
+                    </button>
                 </div>
             </div>
         </dialog>
@@ -129,7 +123,7 @@ export function CodeModal({ isOpen, onClose }: ModalInfoProps) {
             ref={dialogRef}
             onCancel={handleClose}
             onClick={handleBackdropClick}
-            className="backdrop:bg-black/60 backdrop:backdrop-blur-sm m-auto max-w-[90vw] w-full md:max-w-md rounded-xl md:rounded-2xl border border-slate-200 bg-white shadow-2xl open:animate-in open:zoom-in-95 open:fade-in-0 dark:border-slate-700/50 dark:bg-slate-900"
+            className="backdrop:bg-black/60 backdrop:backdrop-blur-sm m-auto max-w-[90vw] w-full md:max-w-md rounded-xl md:rounded-2xl border border-slate-200 bg-white shadow-2xl open:animate-in open:zoom-in-95 open:fade-in-0 dark:border-slate-800 dark:bg-slate-900"
         >
             <div className="flex flex-col gap-2 p-6 text-slate-800 dark:text-slate-200">
                 <h2 className="text-lg font-bold text-slate-900 flex justify-center items-center dark:text-slate-100">
@@ -182,6 +176,122 @@ export function CodeModal({ isOpen, onClose }: ModalInfoProps) {
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </dialog>
+    );
+}
+
+export function InstructionsModal({ isOpen, onClose }: ModalInfoProps) {
+    const dialogRef = useRef<HTMLDialogElement>(null);
+    const [activeStep, setActiveStep] = useState(0);
+
+    const steps = [
+        {
+            title: "Estados de las materias",
+            description: "Podés llevar un seguimiento de tu avance cambiando el estado de cada materia (Pendiente, En curso, Regular o Aprobada) simplemente presionando el botón correspondiente en la tarjeta.",
+            image: "/materias.png",
+        },
+        {
+            title: "Correlativas",
+            description: "Al presionar la tarjeta de una materia, verás resaltado el camino de sus correlativas. Para volver al modo normal, simplemente presioná fuera del camino resaltado.",
+            image: "/correlativas.png",
+        },
+        {
+            title: "Vistas",
+            description: "Contás con una vista de diagrama y una de lista para visualizar el plan. Elegí la que te resulte más fácil de entender para organizar tus estudios.",
+            image: "/vistas.jpg",
+        },
+        {
+            title: "Privacidad y más",
+            description: "La aplicación no almacena información en servidores; todo se guarda en tu dispositivo. En el encabezado también tenés acceso al código fuente y al contacto para sugerencias o reportar problemas.",
+            image: "/privacidad.png",
+        },
+    ];
+
+    useEffect(() => {
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+
+        if (isOpen) {
+            dialog.showModal();
+            setActiveStep(0);
+        } else {
+            dialog.close();
+        }
+    }, [isOpen]);
+
+    const handleClose = () => {
+        onClose();
+    };
+
+    const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+        if (e.target === dialogRef.current) {
+            handleClose();
+        }
+    };
+
+    if (!isOpen) return null;
+
+    return (
+        <dialog
+            ref={dialogRef}
+            onCancel={handleClose}
+            onClick={handleBackdropClick}
+            className="backdrop:bg-black/80 backdrop:backdrop-blur-sm m-auto max-w-[95vw] w-full md:max-w-[720px] max-h-[90vh] md:max-h-none rounded-[1.5rem] md:rounded-[2rem] border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 shadow-[0_30px_80px_rgba(0,0,0,0.65)] open:animate-in open:zoom-in-95 open:fade-in-0 flex flex-col"
+        >
+            <div className="flex flex-col md:aspect-[5/4] md:min-h-[450px] overflow-hidden rounded-[1.25rem] md:rounded-[1.75rem] bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800">
+                <div className="relative h-48 sm:h-64 md:h-[55%] shrink-0 overflow-hidden bg-gradient-to-br from-slate-100 via-white to-slate-200 dark:from-slate-900 dark:via-slate-800 dark:to-slate-950">
+                    <Image
+                        src={steps[activeStep].image}
+                        alt={steps[activeStep].title}
+                        fill
+                        className="object-cover opacity-90 dark:opacity-100"
+                    />
+                </div>
+
+                <div className="flex flex-1 flex-col justify-between overflow-y-auto bg-white dark:bg-slate-900 px-5 py-4 md:px-7 md:py-5">
+                    <div className="space-y-1 md:space-y-3">
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{steps[activeStep].title}</h3>
+                        <p className="max-w-2xl text-sm md:text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                            {steps[activeStep].description}
+                        </p>
+                    </div>
+
+                    <div className="mt-6 flex items-center justify-between gap-3 border-t border-slate-800/50 pt-4 md:pt-0 md:border-none">
+                        <div className="flex gap-1">
+                            {steps.map((_, i) => (
+                                <div
+                                    key={i}
+                                    className={`h-1.5 rounded-full transition-all ${i === activeStep ? 'w-6 bg-cyan-500' : 'w-1.5 bg-slate-700'}`}
+                                />
+                            ))}
+                        </div>
+                        <div className="flex gap-2">
+                            <button
+                                type="button"
+                                onClick={() => setActiveStep((prev) => Math.max(prev - 1, 0))}
+                                disabled={activeStep === 0}
+                                className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900/50 px-4 md:px-6 py-2 md:py-3 text-xs md:text-sm font-semibold text-slate-300 transition hover:bg-slate-800 disabled:opacity-30"
+                            >
+                                Anterior
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    if (activeStep < steps.length - 1) {
+                                        setActiveStep((prev) => prev + 1);
+                                    } else {
+                                        onClose();
+                                    }
+                                }}
+                                className="rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-5 md:px-8 py-2 md:py-3 text-xs md:text-sm font-bold text-white shadow-lg shadow-cyan-500/20 transition hover:scale-[1.02] active:scale-[0.98]"
+                            >
+                                {activeStep === steps.length - 1 ? '¡Listo!' : 'Siguiente'}
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </dialog>

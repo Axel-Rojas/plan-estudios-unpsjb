@@ -1,4 +1,4 @@
-export type EstadoMateria = "pendiente" | "regular" | "aprobada";
+export type EstadoMateria = "pendiente" | "en_curso" | "regular" | "aprobada";
 export type EstadoRequisito = "pendiente" | "aprobada";
 
 export interface Materia {

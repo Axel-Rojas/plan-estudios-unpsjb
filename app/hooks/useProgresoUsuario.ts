@@ -80,10 +80,12 @@ export function useProgresoUsuario() {
             } else {
                 siguiente =
                     actual === "pendiente"
-                        ? "regular"
-                        : actual === "regular"
-                            ? "aprobada"
-                            : "pendiente";
+                        ? "en_curso"
+                        : actual === "en_curso"
+                            ? "regular"
+                            : actual === "regular"
+                                ? "aprobada"
+                                : "pendiente";
             }
 
             return {

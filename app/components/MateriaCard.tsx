@@ -38,18 +38,21 @@ export interface MateriaCardProps {
 
 const ETIQUETAS_ESTADO: Record<EstadoMateria, string> = {
     pendiente: "Pendiente",
+    en_curso: "En curso",
     regular: "Regular",
     aprobada: "Aprobada",
 };
 
 const COLORES_ESTADO: Record<EstadoMateria, string> = {
     pendiente: "text-slate-500 dark:text-slate-500",
+    en_curso: "text-cyan-700 dark:text-cyan-400 font-bold",
     regular: "text-amber-600 dark:text-amber-400",
     aprobada: "text-emerald-600 dark:text-emerald-400",
 };
 
 const SIGUIENTE_ESTADO: Record<EstadoMateria, EstadoMateria> = {
-    pendiente: "regular",
+    pendiente: "en_curso",
+    en_curso: "regular",
     regular: "aprobada",
     aprobada: "pendiente",
 };
@@ -97,6 +100,8 @@ export default function MateriaCard({
                     return "border-emerald-500 bg-emerald-50 dark:bg-[#0a1a14] shadow-[0_0_12px_rgba(52,211,153,0.3)]";
                 case "regular":
                     return "border-amber-500 bg-amber-50 dark:bg-[#1a1508] shadow-[0_0_12px_rgba(251,191,36,0.3)]";
+                case "en_curso":
+                    return "border-cyan-700 bg-cyan-50 dark:bg-[#0a1a1f] shadow-[0_0_14px_rgba(14,116,144,0.4)]";
                 default:
                     return "border-cyan-500/70 bg-cyan-50 dark:bg-[#0d1a2a] shadow-[0_0_14px_rgba(34,211,238,0.3)]";
             }
@@ -107,6 +112,8 @@ export default function MateriaCard({
                 return "border-emerald-300 bg-emerald-50/80 backdrop-blur-sm dark:border-emerald-500 dark:bg-[#0a1a14]";
             case "regular":
                 return "border-amber-300 bg-amber-50/80 backdrop-blur-sm dark:border-amber-500 dark:bg-[#1a1508]";
+            case "en_curso":
+                return "border-cyan-600 bg-cyan-50/90 backdrop-blur-sm dark:border-cyan-700 dark:bg-[#0a1a1f]";
             default:
                 if (isBloqueada) {
                     return "border-slate-200 bg-slate-200/60 dark:border-slate-600/40 dark:bg-[#0f1520]/80";
@@ -161,7 +168,7 @@ export default function MateriaCard({
                                     onAbrirModalOptativa(materia.codigo, materia.grupoOptativa, optativasPosibles);
                                 }
                             }}
-                            className="rounded-lg border border-cyan-500/50 bg-cyan-50 px-3 py-1.5 text-xs font-medium normal-case tracking-normal text-cyan-700 shadow-sm transition-colors hover:bg-cyan-100 active:scale-95 dark:bg-cyan-950/30 dark:text-cyan-400 dark:hover:bg-cyan-900/40 dark:hover:text-cyan-300"
+                            className="cursor-pointer rounded-lg border border-cyan-500/50 bg-cyan-50 px-3 py-1.5 text-xs font-medium normal-case tracking-normal text-cyan-700 shadow-sm transition-colors hover:bg-cyan-100 active:scale-95 dark:bg-cyan-950/30 dark:text-cyan-400 dark:hover:bg-cyan-900/40 dark:hover:text-cyan-300"
                         >
                             Elegir Optativa
                         </button>
@@ -183,7 +190,7 @@ export default function MateriaCard({
                                         onAbrirModalOptativa(materia.codigo, materia.grupoOptativa, optativasPosibles);
                                     }
                                 }}
-                                className={`flex items-center justify-center rounded px-1.5 py-0.5 text-[10px] font-serif font-bold italic
+                                className={`flex cursor-pointer items-center justify-center rounded px-1.5 py-0.5 text-[10px] font-serif font-bold italic
                   transition-colors border min-w-[24px] text-center md:rounded-md md:px-2.5 md:py-1 md:text-xs md:min-w-[36px]
                   border-slate-300 text-slate-500 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-200
                 `}
@@ -200,15 +207,17 @@ export default function MateriaCard({
                                 }
                             }}
                             disabled={Boolean(isBloqueada || (isOptativa && !optativaDetalles))}
-                            className={`flex items-center justify-center rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide 
+                            className={`flex cursor-pointer items-center justify-center rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide 
                   transition-colors border min-w-[24px] text-center md:rounded-md md:px-2.5 md:py-1 md:text-xs md:min-w-[36px]
                   ${(isBloqueada || (isOptativa && !optativaDetalles))
-                                    ? "border-slate-200 text-slate-400 bg-slate-50 dark:border-slate-800 dark:text-slate-600 dark:bg-transparent cursor-not-allowed opacity-50"
+                                    ? "cursor-not-allowed border-slate-200 text-slate-400 bg-slate-50 dark:border-slate-800 dark:text-slate-600 dark:bg-transparent opacity-50"
                                     : estadoMostrar === "pendiente"
                                         ? "border-slate-300 text-slate-500 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-200"
-                                        : estadoMostrar === "regular"
-                                            ? "border-amber-300 text-amber-600 hover:bg-amber-50 dark:border-amber-600/50 dark:text-amber-400 dark:hover:bg-amber-900/30"
-                                            : "border-emerald-300 text-emerald-600 hover:bg-emerald-50 dark:border-emerald-600/50 dark:text-emerald-400 dark:hover:bg-emerald-900/30"
+                                        : estadoMostrar === "en_curso"
+                                            ? "border-cyan-600 text-cyan-700 hover:bg-cyan-50 dark:border-cyan-500/50 dark:text-cyan-400 dark:hover:bg-cyan-900/30"
+                                            : estadoMostrar === "regular"
+                                                ? "border-amber-300 text-amber-600 hover:bg-amber-50 dark:border-amber-600/50 dark:text-amber-400 dark:hover:bg-amber-900/30"
+                                                : "border-emerald-300 text-emerald-600 hover:bg-emerald-50 dark:border-emerald-600/50 dark:text-emerald-400 dark:hover:bg-emerald-900/30"
                                 }
                 `}
                             title={isBloqueada ? "Materia bloqueada por correlativas" : `Cambiar a ${ETIQUETAS_ESTADO[SIGUIENTE_ESTADO[estadoMostrar]]}`}

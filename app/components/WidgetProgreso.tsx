@@ -25,7 +25,7 @@ function useNumeroAnimado(objetivo: number, duracion = 800) {
             const elapsed = now - startTime;
             const progreso = Math.min(elapsed / duracion, 1);
             const eased = 1 - Math.pow(1 - progreso, 3);
-            setMostrado(Math.round(from + (to - from) * eased));
+            setMostrado(from + (to - from) * eased);
 
             if (progreso < 1) {
                 rafRef.current = requestAnimationFrame(animar);
@@ -87,7 +87,7 @@ export default function WidgetProgreso({ materias, requisitos = [], getEstado }:
         });
 
         const cursadasAprobadas = aprobRegulares + aprobOptativas + aprobRequisitos;
-        const porcentaje = totalItems === 0 ? 0 : Math.round((cursadasAprobadas / totalItems) * 100);
+        const porcentaje = totalItems === 0 ? 0 : (cursadasAprobadas / totalItems) * 100;
         return { aprobadas: cursadasAprobadas, total: totalItems, pct: porcentaje, finalesPendientes: pendientes };
     }, [materias, requisitos, getEstado]);
 
@@ -99,7 +99,7 @@ export default function WidgetProgreso({ materias, requisitos = [], getEstado }:
             <div className="flex items-center gap-3 md:hidden">
                 <div className="flex items-baseline gap-0.5">
                     <span className="text-4xl font-bold tabular-nums leading-none text-emerald-600 dark:text-emerald-400">
-                        {pctAnimado}
+                        {pctAnimado.toFixed(2)}
                     </span>
                     <span className="text-lg font-semibold text-emerald-600/70 dark:text-emerald-500/70">%</span>
                 </div>
@@ -136,7 +136,7 @@ export default function WidgetProgreso({ materias, requisitos = [], getEstado }:
                     </p>
                     <div className="flex items-baseline gap-1">
                         <span className="text-4xl font-bold tabular-nums leading-none text-emerald-600 dark:text-emerald-400">
-                            {pctAnimado}
+                            {pctAnimado.toFixed(2)}
                         </span>
                         <span className="text-lg font-semibold text-emerald-600/70 dark:text-emerald-500/70">%</span>
                     </div>

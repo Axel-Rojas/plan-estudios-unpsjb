@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from "react";
 import type { Carrera } from "../types";
-import { ContactModal, CodeModal } from "./ModalInfo";
+import { ContactModal, CodeModal, InstructionsModal } from "./ModalInfo";
 import { FACULTAD_NOMBRES } from "../data";
 import { ThemeToggle } from "./ThemeToggle";
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 export interface HeaderProps {
     carreras: Carrera[];
@@ -15,6 +18,9 @@ export interface HeaderProps {
     onLimpiarCarrera?: () => void;
     vistaModo?: "diagrama" | "lista";
     onCambiarVista?: (vista: "diagrama" | "lista") => void;
+    onShowCode?: () => void;
+    onShowContact?: () => void;
+    onShowInstructions?: () => void;
 }
 
 export default function Header({
@@ -24,6 +30,9 @@ export default function Header({
     onLimpiarCarrera,
     vistaModo = "diagrama",
     onCambiarVista,
+    onShowCode,
+    onShowContact,
+    onShowInstructions,
 }: HeaderProps) {
     const facultades = [...new Set(carreras.map((c) => c.facultad))].sort((a, b) =>
         (FACULTAD_NOMBRES[a] || a).localeCompare(FACULTAD_NOMBRES[b] || b, "es")
@@ -31,8 +40,6 @@ export default function Header({
     const [facultadSeleccionada, setFacultadSeleccionada] = useState<string>(
         carreraSeleccionada?.facultad || facultades.includes("Facultad de Ciencias Naturales y Ciencias de la Salud") ? "Facultad de Ciencias Naturales y Ciencias de la Salud" : facultades[0] || ""
     );
-    const [showContact, setShowContact] = useState(false);
-    const [showCode, setShowCode] = useState(false);
 
     useEffect(() => {
         if (carreraSeleccionada) {
@@ -111,29 +118,29 @@ export default function Header({
 
                 <div className="flex w-full items-center justify-center gap-2">
                     <button
-                        onClick={() => setShowCode(true)}
-                        className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:bg-slate-100 focus:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white dark:focus:bg-slate-800 dark:focus:text-white"
+                        onClick={onShowCode}
+                        className="flex cursor-pointer items-center gap-1.5 rounded-full px-2.5 py-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:bg-slate-100 focus:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white dark:focus:bg-slate-800 dark:focus:text-white"
                         title="Ver código fuente en GitHub"
                     >
-                        <svg className="h-4 w-4 md:h-5 md:w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                            <path d="M9 18c-4.51 2-5-2-7-2" />
-                        </svg>
+                        <GitHubIcon className="!h-4 !w-4 md:!h-5 md:!w-5" />
                         <span className="text-xs font-semibold md:text-sm">Código</span>
                     </button>
                     <button
-                        onClick={() => setShowContact(true)}
-                        className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:bg-slate-100 focus:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white dark:focus:bg-slate-800 dark:focus:text-white"
+                        onClick={onShowInstructions}
+                        className="flex cursor-pointer items-center gap-1.5 rounded-full px-2.5 py-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:bg-slate-100 focus:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white dark:focus:bg-slate-800 dark:focus:text-white"
+                        title="Ver instrucciones"
+                    >
+                        <HelpOutlineOutlinedIcon fontSize="small" />
+                        <span className="text-xs font-semibold md:text-sm">Instrucciones</span>
+                    </button>
+                    <button
+                        onClick={onShowContact}
+                        className="flex cursor-pointer items-center gap-1.5 rounded-full px-2.5 py-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:bg-slate-100 focus:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white dark:focus:bg-slate-800 dark:focus:text-white"
                         title="Informar problema o sugerencia"
                     >
-                        <svg className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="20" height="16" x="2" y="4" rx="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <MailOutlineIcon className="!h-4 !w-4 md:!h-5 md:!w-5" />
                         <span className="text-xs font-semibold md:text-sm">Contacto</span>
                     </button>
-                    <CodeModal isOpen={showCode} onClose={() => setShowCode(false)} />
-                    <ContactModal isOpen={showContact} onClose={() => setShowContact(false)} />
                 </div>
             </div>
 
@@ -141,22 +148,20 @@ export default function Header({
                 <div className="flex w-full border-t border-slate-200 dark:border-slate-700/50">
                     <button
                         onClick={() => onCambiarVista('diagrama')}
-                        className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium transition-colors ${
-                            vistaModo === 'diagrama'
-                                ? 'border-b-2 border-cyan-500 text-cyan-700 dark:text-cyan-400 bg-slate-50 dark:bg-slate-800/40'
-                                : 'border-b-2 border-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-slate-800/30 dark:hover:text-slate-200'
-                        }`}
+                        className={`flex-1 flex cursor-pointer items-center justify-center gap-2 py-3 text-sm font-medium transition-colors ${vistaModo === 'diagrama'
+                            ? 'border-b-2 border-cyan-500 text-cyan-700 dark:text-cyan-400 bg-slate-50 dark:bg-slate-800/40'
+                            : 'border-b-2 border-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-slate-800/30 dark:hover:text-slate-200'
+                            }`}
                     >
                         <AccountTreeOutlinedIcon fontSize="small" />
                         Diagrama
                     </button>
                     <button
                         onClick={() => onCambiarVista('lista')}
-                        className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium transition-colors ${
-                            vistaModo === 'lista'
-                                ? 'border-b-2 border-cyan-500 text-cyan-700 dark:text-cyan-400 bg-slate-50 dark:bg-slate-800/40'
-                                : 'border-b-2 border-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-slate-800/30 dark:hover:text-slate-200'
-                        }`}
+                        className={`flex-1 flex cursor-pointer items-center justify-center gap-2 py-3 text-sm font-medium transition-colors ${vistaModo === 'lista'
+                            ? 'border-b-2 border-cyan-500 text-cyan-700 dark:text-cyan-400 bg-slate-50 dark:bg-slate-800/40'
+                            : 'border-b-2 border-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-slate-800/30 dark:hover:text-slate-200'
+                            }`}
                     >
                         <FormatListBulletedOutlinedIcon fontSize="small" />
                         Lista

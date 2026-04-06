@@ -10,6 +10,7 @@ import ModalBienvenida from "./components/ModalBienvenida";
 import carrerasPorFacultad from "./data";
 import WidgetProgreso from "./components/WidgetProgreso";
 import SeccionRequisitos from "./components/SeccionRequisitos";
+import { ContactModal, CodeModal, InstructionsModal } from "./components/ModalInfo";
 
 const carreras = Object.values(carrerasPorFacultad).flat();
 
@@ -28,6 +29,9 @@ export default function Home() {
   const [showBienvenida, setShowBienvenida] = useState(false);
   const [carreraVista, setCarreraVista] = useState<string | undefined | null>(undefined);
   const [vistaModo, setVistaModo] = useState<"diagrama" | "lista">("diagrama");
+  const [showContact, setShowContact] = useState(false);
+  const [showCode, setShowCode] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -45,6 +49,7 @@ export default function Home() {
     setCarrera(carrera.nombre, carrera.facultad);
     setCarreraVista(undefined);
     setShowBienvenida(false);
+    setShowInstructions(true);
   };
 
   if (!mounted) {
@@ -67,6 +72,9 @@ export default function Home() {
         onLimpiarCarrera={() => setCarreraVista(null)}
         vistaModo={vistaModo}
         onCambiarVista={setVistaModo}
+        onShowCode={() => setShowCode(true)}
+        onShowContact={() => setShowContact(true)}
+        onShowInstructions={() => setShowInstructions(true)}
       />
 
       {carreraSeleccionada ? (
@@ -110,6 +118,10 @@ export default function Home() {
           </p>
         </div>
       )}
+
+      <CodeModal isOpen={showCode} onClose={() => setShowCode(false)} />
+      <ContactModal isOpen={showContact} onClose={() => setShowContact(false)} />
+      <InstructionsModal isOpen={showInstructions} onClose={() => setShowInstructions(false)} />
     </div>
   );
 }

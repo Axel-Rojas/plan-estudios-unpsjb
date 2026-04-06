@@ -22,18 +22,21 @@ export interface ListaPlanProps {
 
 const ETIQUETAS_ESTADO: Record<EstadoMateria, string> = {
     pendiente: "Pendiente",
+    en_curso: "En curso",
     regular: "Regular",
     aprobada: "Aprobada",
 };
 
 const COLORES_ESTADO_TEXTO: Record<EstadoMateria, string> = {
     pendiente: "text-slate-500 dark:text-slate-400",
+    en_curso: "text-cyan-700 dark:text-cyan-400 font-bold",
     regular: "text-amber-600 dark:text-amber-400",
     aprobada: "text-emerald-600 dark:text-emerald-400",
 };
 
 const SIGUIENTE_ESTADO: Record<EstadoMateria, EstadoMateria> = {
-    pendiente: "regular",
+    pendiente: "en_curso",
+    en_curso: "regular",
     regular: "aprobada",
     aprobada: "pendiente",
 };
@@ -131,6 +134,7 @@ export default function ListaPlan({
                                                     if (isBloqueada) return "bg-slate-50/50 dark:bg-[#0a0f18]/50 opacity-70 grayscale";
                                                     if (estadoMostrar === "aprobada") return "bg-emerald-50/30 dark:bg-emerald-950/20";
                                                     if (estadoMostrar === "regular") return "bg-amber-50/30 dark:bg-amber-950/20";
+                                                    if (estadoMostrar === "en_curso") return "bg-cyan-50/50 dark:bg-cyan-950/20 border-l-4 border-cyan-600";
                                                     return "hover:bg-slate-50 dark:hover:bg-slate-800/50";
                                                 };
 
@@ -179,7 +183,7 @@ export default function ListaPlan({
                                                                                 });
                                                                             }
                                                                         }}
-                                                                        className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white p-1.5 text-slate-600 shadow-sm hover:bg-slate-50 hover:text-slate-900 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-slate-100 transition-colors"
+                                                                        className="inline-flex cursor-pointer items-center justify-center rounded-md border border-slate-300 bg-white p-1.5 text-slate-600 shadow-sm hover:bg-slate-50 hover:text-slate-900 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-slate-100 transition-colors"
                                                                         title={optativaDetalles ? "Cambiar optativa" : "Elegir optativa"}
                                                                     >
                                                                         <SettingsOutlinedIcon fontSize="small" />
@@ -193,14 +197,16 @@ export default function ListaPlan({
                                                                         }
                                                                     }}
                                                                     disabled={Boolean(isBloqueada || (isOptativa && !optativaDetalles))}
-                                                                    className={`inline-flex items-center justify-center rounded-md border p-1.5 transition-colors shadow-sm
+                                                                    className={`inline-flex cursor-pointer items-center justify-center rounded-md border p-1.5 transition-colors shadow-sm
                                                                         ${(isBloqueada || (isOptativa && !optativaDetalles))
-                                                                            ? "border-slate-200 text-slate-400 bg-slate-50 dark:border-slate-800 dark:text-slate-600 dark:bg-transparent cursor-not-allowed opacity-50"
+                                                                            ? "cursor-not-allowed border-slate-200 text-slate-400 bg-slate-50 dark:border-slate-800 dark:text-slate-600 dark:bg-transparent opacity-50"
                                                                             : estadoMostrar === "pendiente"
                                                                                 ? "border-slate-300 text-slate-500 bg-white hover:bg-slate-50 hover:text-slate-700 dark:border-slate-600 dark:text-slate-400 dark:bg-slate-800 dark:hover:bg-slate-700 dark:hover:text-slate-200"
-                                                                                : estadoMostrar === "regular"
-                                                                                    ? "border-amber-300 text-amber-600 bg-amber-50 hover:bg-amber-100 dark:border-amber-600/50 dark:text-amber-500 dark:bg-amber-950/30 dark:hover:bg-amber-900/40"
-                                                                                    : "border-emerald-300 text-emerald-600 bg-emerald-50 hover:bg-emerald-100 dark:border-emerald-600/50 dark:text-emerald-500 dark:bg-emerald-950/30 dark:hover:bg-emerald-900/40"
+                                                                                : estadoMostrar === "en_curso"
+                                                                                    ? "border-cyan-300 text-cyan-700 bg-cyan-50 hover:bg-cyan-100 dark:border-cyan-600/50 dark:text-cyan-500 dark:bg-cyan-950/30 dark:hover:bg-cyan-900/40"
+                                                                                    : estadoMostrar === "regular"
+                                                                                        ? "border-amber-300 text-amber-600 bg-amber-50 hover:bg-amber-100 dark:border-amber-600/50 dark:text-amber-500 dark:bg-amber-950/30 dark:hover:bg-amber-900/40"
+                                                                                        : "border-emerald-300 text-emerald-600 bg-emerald-50 hover:bg-emerald-100 dark:border-emerald-600/50 dark:text-emerald-500 dark:bg-emerald-950/30 dark:hover:bg-emerald-900/40"
                                                                         }
                                                                     `}
                                                                     title={isBloqueada ? "Materia bloqueada por correlativas" : `Cambiar a ${ETIQUETAS_ESTADO[SIGUIENTE_ESTADO[estadoMostrar]]}`}

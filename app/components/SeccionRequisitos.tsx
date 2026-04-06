@@ -69,7 +69,7 @@ export default function SeccionRequisitos({
                                     </span>
                                     <button
                                         onClick={() => handleCicloEstado(req.codigo)}
-                                        className={`flex items-center justify-center rounded-md px-2.5 py-1 text-xs font-semibold border min-w-[36px] text-center transition-colors ${estado === "pendiente"
+                                        className={`flex cursor-pointer items-center justify-center rounded-md px-2.5 py-1 text-xs font-semibold border min-w-[36px] text-center transition-colors ${estado === "pendiente"
                                             ? "border-slate-300 text-slate-500 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-200"
                                             : "border-emerald-300 text-emerald-600 hover:bg-emerald-50 dark:border-emerald-600/50 dark:text-emerald-400 dark:hover:bg-emerald-900/30"
                                             }`}
