@@ -15,6 +15,14 @@ import { ContactModal, CodeModal, InstructionsModal } from "./components/ModalIn
 const carreras = Object.values(carrerasPorFacultad).flat();
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+  const [showBienvenida, setShowBienvenida] = useState(false);
+  const [carreraVista, setCarreraVista] = useState<string | undefined | null>(undefined);
+  const [vistaModo, setVistaModo] = useState<"diagrama" | "lista">("diagrama");
+  const [showContact, setShowContact] = useState(false);
+  const [showCode, setShowCode] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
+
   const {
     progreso,
     getEstado,
@@ -23,15 +31,7 @@ export default function Home() {
     estaDesbloqueada,
     getOptativaElegida,
     setOptativaElegida,
-  } = useProgresoUsuario();
-
-  const [mounted, setMounted] = useState(false);
-  const [showBienvenida, setShowBienvenida] = useState(false);
-  const [carreraVista, setCarreraVista] = useState<string | undefined | null>(undefined);
-  const [vistaModo, setVistaModo] = useState<"diagrama" | "lista">("diagrama");
-  const [showContact, setShowContact] = useState(false);
-  const [showCode, setShowCode] = useState(false);
-  const [showInstructions, setShowInstructions] = useState(false);
+  } = useProgresoUsuario(carreraVista, carreras);
 
   useEffect(() => {
     setMounted(true);
