@@ -1,81 +1,81 @@
-# Plan de Estudios UNPSJB
+<div align="center">
 
-El proyecto es una aplicación web que permite visualizar el plan de estudios, estado de materias y organización académica, pensada inicialmente para la Universidad Nacional de la Patagonia San Juan Bosco (UNPSJB) y con la idea de poder ser adaptada a cualquier institución educativa.
+<img src="public/ogimg.webp" alt="Plan de Estudios UNPSJB" width="100%" />
 
-## Instalación
 
-Seguí estos pasos para instalar y ejecutar el proyecto en tu entorno local:
+Visualizá tu avance académico, marcá el estado de tus materias y explorá correlativas — todo desde el navegador, sin cuenta ni registro.
 
-1. Clona el repositorio:
+[![Último commit](https://img.shields.io/github/last-commit/AxelRojas-hub/plan-estudios-unpsjb?style=flat-square)](https://github.com/AxelRojas-hub/plan-estudios-unpsjb/commits/main)
+[![Colaboradores](https://img.shields.io/github/contributors/AxelRojas-hub/plan-estudios-unpsjb?style=flat-square)](https://github.com/AxelRojas-hub/plan-estudios-unpsjb/graphs/contributors)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![PWA](https://img.shields.io/badge/PWA-instalable-5a0fc8?style=flat-square&logo=pwa)](https://web.dev/progressive-web-apps/)
+
+</div>
+
+## Funcionalidades
+
+- **Vista diagrama** — plan de estudios organizado por año y cuatrimestre
+- **Vista lista** — tabla compacta con todas las materias y su estado
+- **Estados de materia** — marcá cada materia como Pendiente, En Curso, Regular o Aprobada
+- **Correlativas interactivas** — al seleccionar una materia se resaltan sus correlativas
+- **Progreso persistente** — el avance se guarda en el navegador
+- **Múltiples carreras** — incluye 5 facultades con sus respectivas carreras
+- **Instalable como PWA** — funciona offline una vez instalado
+
+
+## Capturas
+
+### Vista general del diagrama
+
+![Vista del plan de estudios con materias en distintos estados](public/materias.png)
+
+### Correlativas resaltadas
+
+![Correlativas resaltadas al seleccionar una materia](public/correlativas.png)
+
+## Inicio Rápido
+
 ```bash
+# 1. Cloná el repositorio
 git clone https://github.com/AxelRojas-hub/plan-estudios-unpsjb.git
 cd plan-estudios-unpsjb
-```
 
-2. Instalá las dependencias usando pnpm:
-```bash
+# 2. Instalá las dependencias
 pnpm install
-```
 
-3. Iniciá el servidor de desarrollo:
-```bash
+# 3. Iniciá el servidor de desarrollo
 pnpm run dev
 ```
 
-El proyecto estará disponible en [http://localhost:3000](http://localhost:3000).
+La app estará disponible en [http://localhost:3000](http://localhost:3000).
 
----
 
-## Cómo instalarlo y personalizarlo para tu Institución
 
-Este proyecto fue pensado para que cualquier institución educativa lo pueda adaptar fácilmente aportando sus propios planes de estudio.
+## 🛠️ Stack tecnológico
 
-1. **Creá un fork** o copia el proyecto.
-2. **Definí tus carreras**: Dirigite a la carpeta `app/data/`. Podrás crear un directorio nuevo o reemplazar los de las facultades actuales. Cada carrera se define creando arreglos de objetos TypeScript.
-3. **Actualizá el índice principal**: Editá el archivo `app/data/index.ts` e importá las facultades y carreras que hayas creado definiéndolas en el objeto principal `carreras`.
-4. **Personalizá nombres e imágenes**: Asegurate de cambiar el logo y adaptar aspectos visuales como iconos y nombre del sitio modificando `manifest.ts` y el layout principal.
+| Tecnología | Uso |
+|---|---|
+| [Next.js 16](https://nextjs.org) | Framework React con App Router |
+| [React 19](https://react.dev) | UI |
+| [TypeScript 5](https://www.typescriptlang.org) | Tipado estricto de datos |
+| [TailwindCSS 4](https://tailwindcss.com) | Estilos utilitarios |
+| [Material UI 7](https://mui.com) | Componentes de interfaz |
+| [next-pwa](https://github.com/DuCanhGH/next-pwa) | Soporte PWA |
 
----
 
-## Tipos de Datos
 
-Toda la base de datos local usa un estricto tipado de Typescript. Cuando incorpores una nueva `Carrera` o incluyas una nueva `Materia`, asegurate de respetar las siguientes interfaces definidas en `app/types.ts`:
+## 🤝 Contribuir o adaptar el proyecto
 
-```typescript
-export type EstadoMateria = "pendiente" | "regular" | "aprobada";
+¿Querés reportar un bug, proponer una mejora o adaptar la app para tu institución?
 
-export interface Materia {
-    codigo: string;
-    nombre: string;
-    año: number;
-    cuatrimestre: 0 | 1 | 2; // 0 significa que es una materia Anual
-    correlativas: string[];  // Array de string conteniendo los Códigos de las materias que son correlativas
-    condicion?: string;
-    cargaHoraria?: number;
-    esOptativa?: boolean;
-    grupoOptativa?: string;
-}
+Consultá la [**Guía de Contribución**](CONTRIBUTING.md) donde encontrarás:
+- Pasos para personalizar con tus propios planes de estudio
+- Documentación de los tipos de datos TypeScript
+- Cómo abrir issues y pull requests
 
-export interface RequisitoComplementario {
-    codigo: string;
-    nombre: string;
-    condicion?: string;
-}
-
-export interface Carrera {
-    nombre: string;
-    facultad: string;
-    sede: string;
-    plan: string;
-    materias: Materia[];
-    requisitos?: RequisitoComplementario[];
-}
-```
----
-
-## Contribuciones
-
-Todo aporte es bienvenido, ya sean ideas de mejora o pull requests, los colaboradores son:
+##  Colaboradores
 
 <a href="https://github.com/AxelRojas-hub/plan-estudios-unpsjb/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=AxelRojas-hub/plan-estudios-unpsjb" alt="Contribuidores del proyecto" />
