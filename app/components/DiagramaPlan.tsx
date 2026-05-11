@@ -70,6 +70,11 @@ export default function DiagramaPlan({
         return obtenerCadenaCompleta(materiaSeleccionada, materiasPorCodigo, mapaDependientes);
     }, [materiaSeleccionada, materiasPorCodigo, mapaDependientes]);
 
+    const conteoAprobadas = useMemo(
+        () => materias.filter((m) => getEstado(m.codigo) === "aprobada").length,
+        [materias, getEstado]
+    );
+
     const calcularFlechas = useCallback(() => {
         if (!refContenedor.current) return;
         const containerRect = refContenedor.current.getBoundingClientRect();
@@ -267,6 +272,7 @@ export default function DiagramaPlan({
                                             getEstadoInfo={getEstado}
                                             getOptativaElegida={getOptativaElegida}
                                             onAbrirModalOptativa={(slotCodigo, grupo, opts) => setModalOptativa({ slotCodigo, grupo, optativasPosibles: opts })}
+                                            conteoAprobadas={conteoAprobadas}
                                         />
                                     );
                                 })}

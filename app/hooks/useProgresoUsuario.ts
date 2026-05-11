@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { EstadoMateria, Materia, Carrera } from "../types";
+import { parsearCantidadRequerida } from "../lib/diagrama";
 
 interface ProgresoUsuario {
     carreraId: string | null;
@@ -218,12 +219,23 @@ export function useProgresoUsuario(
                 }
             }
 
-            if (correlativasAevaluar.length === 0) return true;
+            if (correlativasAevaluar.length > 0) {
+                const todasDesbloqueadas = correlativasAevaluar.every((cod) => {
+                    const estado = progreso.materias[`${carreraActual}:${cod}`] || "pendiente";
+                    return estado === "aprobada" || estado === "regular";
+                });
+                if (!todasDesbloqueadas) return false;
+            }
 
-            return correlativasAevaluar.every((cod) => {
-                const estado = progreso.materias[`${carreraActual}:${cod}`] || "pendiente";
-                return estado === "aprobada" || estado === "regular";
-            });
+            const requeridas = parsearCantidadRequerida(materia.condicion);
+            if (requeridas !== null) {
+                const aprobadas = materias.filter(
+                    (m) => progreso.materias[`${carreraActual}:${m.codigo}`] === "aprobada"
+                ).length;
+                if (aprobadas < requeridas) return false;
+            }
+
+            return true;
         },
         [progreso.materias, progreso.optativas, carreraActual]
     );

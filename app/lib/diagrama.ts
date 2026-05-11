@@ -1,5 +1,10 @@
 import { Materia } from "../types";
 
+export function parsearCantidadRequerida(condicion: string | undefined): number | null {
+    const match = condicion?.match(/^(\d+) asignaturas aprobadas$/);
+    return match ? parseInt(match[1], 10) : null;
+}
+
 export function obtenerMateriasVisibles(materias: Materia[]): Materia[] {
     return materias.filter(
         (m) => !m.esOptativa || /^(optativa|electiva|actividades|asignatura)/i.test(m.nombre)

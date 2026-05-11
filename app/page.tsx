@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import type { Carrera } from "./types";
 import { useProgresoUsuario } from "./hooks/useProgresoUsuario";
 import Header from "./components/Header";
@@ -44,6 +44,11 @@ export default function Home() {
 
   const carreraSeleccionada: Carrera | null =
     carreras.find((c) => c.nombre === nombreCarreraAMostrar) ?? null;
+
+  const conteoAprobadas = useMemo(
+    () => carreraSeleccionada?.materias.filter((m) => getEstado(m.codigo) === "aprobada").length ?? 0,
+    [carreraSeleccionada, getEstado]
+  );
 
   const handleSeleccionarCarreraOnboarding = (carrera: Carrera) => {
     setCarrera(carrera.nombre, carrera.facultad);
@@ -103,6 +108,7 @@ export default function Home() {
               requisitos={carreraSeleccionada.requisitos}
               getEstado={getEstado}
               handleCicloEstado={(codigo) => handleCicloEstado(codigo, true)}
+              conteoAprobadas={conteoAprobadas}
             />
           )}
           <WidgetProgreso
