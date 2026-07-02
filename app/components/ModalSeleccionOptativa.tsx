@@ -36,7 +36,7 @@ export default function ModalSeleccionOptativa({
     }, []);
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm dark:bg-black/40">
+        <div className="fixed inset-0 z-100 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm dark:bg-black/40">
             <div
                 className="absolute inset-0"
                 onClick={onClose}
@@ -76,6 +76,7 @@ export default function ModalSeleccionOptativa({
                         <button
                             onClick={() => onSelect("")}
                             className={`rounded-xl border py-2 text-center transition-all cursor-pointer
+                                text-sm font-semibold text-red-800 dark:text-red-300
                                 border-red-200 bg-red-50 hover:border-red-300 hover:bg-red-100 active:scale-[0.98]
                                 dark:border-red-900/50 dark:bg-red-950/40 dark:hover:border-red-800/60 dark:hover:bg-red-900/40`}
                         >
