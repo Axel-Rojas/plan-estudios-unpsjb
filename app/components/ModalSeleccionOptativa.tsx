@@ -15,6 +15,7 @@ interface ModalSeleccionOptativaProps {
     estaDesbloqueada: (codigo: string) => boolean;
     onClose: () => void;
     onSelect: (codigo: string) => void;
+    optativaActualElegida?: string;
 }
 
 export default function ModalSeleccionOptativa({
@@ -23,6 +24,7 @@ export default function ModalSeleccionOptativa({
     estaDesbloqueada,
     onClose,
     onSelect,
+    optativaActualElegida,
 }: ModalSeleccionOptativaProps) {
     const titulo = grupo === "optativa1" ? "Optativa I" : "Optativa II";
 
@@ -70,6 +72,16 @@ export default function ModalSeleccionOptativa({
                 </div>
 
                 <div className="flex flex-col gap-3 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                    {optativaActualElegida && (
+                        <button
+                            onClick={() => onSelect("")}
+                            className={`rounded-xl border py-2 text-center transition-all cursor-pointer
+                                border-red-200 bg-red-50 hover:border-red-300 hover:bg-red-100 active:scale-[0.98]
+                                dark:border-red-900/50 dark:bg-red-950/40 dark:hover:border-red-800/60 dark:hover:bg-red-900/40`}
+                        >
+                            Limpiar selección
+                        </button>
+                    )}
                     {optativas.map((opt) => {
                         const isBloqueada = !estaDesbloqueada(opt.codigo);
                         return (

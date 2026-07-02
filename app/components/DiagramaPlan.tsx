@@ -292,6 +292,7 @@ export default function DiagramaPlan({
                         setOptativaElegida(modalOptativa.slotCodigo, codigo);
                         setModalOptativa(null);
                     }}
+                    optativaActualElegida={getOptativaElegida(modalOptativa.slotCodigo)}
                 />
             )}
         </div>
