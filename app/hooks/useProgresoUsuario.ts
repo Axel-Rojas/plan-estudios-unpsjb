@@ -178,10 +178,21 @@ export function useProgresoUsuario(
     const setOptativaElegida = useCallback(
         (slotCodigo: string, codigoMateria: string) => {
             if (!carreraActual) return;
-            actualizarProgreso((prev) => ({
-                ...prev,
-                optativas: { ...prev.optativas, [`${carreraActual}:${slotCodigo}`]: codigoMateria },
-            }));
+            actualizarProgreso((prev) => {
+                const nuevasOptativas = { ...prev.optativas };
+                const key = `${carreraActual}:${slotCodigo}`;
+                
+                if (codigoMateria === "") {
+                    delete nuevasOptativas[key];
+                } else {
+                    nuevasOptativas[key] = codigoMateria;
+                }
+
+                return {
+                    ...prev,
+                    optativas: nuevasOptativas,
+                };
+            });
         },
         [actualizarProgreso, carreraActual]
     );

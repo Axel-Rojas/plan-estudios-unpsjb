@@ -101,7 +101,7 @@ export default function MateriaCard({
 
     const getEstilosEstado = () => {
         if (isSeleccionada || isDestacada) {
-            switch (estado) {
+            switch (estadoMostrar) {
                 case "aprobada":
                     return "border-emerald-500 bg-emerald-50 dark:bg-[#0a1a14] shadow-[0_0_12px_rgba(52,211,153,0.3)]";
                 case "regular":
@@ -113,7 +113,7 @@ export default function MateriaCard({
             }
         }
 
-        switch (estado) {
+        switch (estadoMostrar) {
             case "aprobada":
                 return "border-emerald-300 bg-emerald-50/80 backdrop-blur-sm dark:border-emerald-500 dark:bg-[#0a1a14]";
             case "regular":

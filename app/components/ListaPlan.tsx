@@ -237,6 +237,7 @@ export default function ListaPlan({
                         setOptativaElegida(modalOptativa.slotCodigo, codigo);
                         setModalOptativa(null);
                     }}
+                    optativaActualElegida={getOptativaElegida(modalOptativa.slotCodigo)}
                 />
             )}
         </div>
