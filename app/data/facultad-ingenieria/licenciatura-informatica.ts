@@ -45,6 +45,7 @@ const licenciaturaInformatica: Carrera = {
         { codigo: "IF027", nombre: "Modelos y Simulación", año: 5, cuatrimestre: 1, correlativas: ["IF020"], cargaHoraria: 90, esOptativa: true, grupoOptativa: "optativa1" },
 
         { codigo: "IF023", nombre: "Diseño de Aplicaciones Web", año: 5, cuatrimestre: 2, correlativas: ["IF009", "IF015", "IF019"], cargaHoraria: 135, esOptativa: true, grupoOptativa: "optativa2" },
+        { codigo: "IF029", nombre: "Desarrollo de Aplicaciones para Dispositivos Móviles", año: 5, cuatrimestre: 2, correlativas: ["IF010", "IF009", "IF011"], cargaHoraria: 90, esOptativa: true, grupoOptativa: "optativa2" },
         { codigo: "IF034", nombre: "Sistemas Paralelos", año: 5, cuatrimestre: 2, correlativas: ["IF018"], cargaHoraria: 120, esOptativa: true, grupoOptativa: "optativa2" },
         { codigo: "IF053", nombre: "Planificación y Gestión de Sistemas de Información", año: 5, cuatrimestre: 2, correlativas: ["IF015"], cargaHoraria: 90, esOptativa: true, grupoOptativa: "optativa2" },
         { codigo: "IF028", nombre: "Monitorización y Visualización", año: 5, cuatrimestre: 2, correlativas: ["IF024"], cargaHoraria: 120, esOptativa: true, grupoOptativa: "optativa2" },

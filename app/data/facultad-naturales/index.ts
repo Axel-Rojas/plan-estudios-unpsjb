@@ -6,6 +6,7 @@ import profesoradoCienciasBiologicas from "./profesorado-ciencias-biologicas";
 import geologo from "./geologo";
 import farmacia from "./farmacia";
 import bioquimica from "./bioquimica";
+import licenciaturaProteccionSaneamientoAmbiental from "./lic-proteccion-saneamiento-ambiental";
 import tecnicoUnivProteccionAmbiental from "./tec-universitario-proteccion-ambiental";
 import tecnicoUnivQuimica from "./tec-universitario-quimica";
 import licenciaturaQuimica from "./licenciatura-quimica";
@@ -20,6 +21,7 @@ const carreras: Carrera[] = [
     profesoradoCienciasBiologicas,
     farmacia,
     bioquimica,
+    licenciaturaProteccionSaneamientoAmbiental,
     tecnicoUnivProteccionAmbiental,
     tecnicoUnivQuimica,
     licenciaturaQuimica,
